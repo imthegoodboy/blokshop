@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function JudgesReviews() {
     return (
         <section className="bg-white p-6 rounded-lg shadow-sm space-y-4">
