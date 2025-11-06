@@ -63,3 +63,23 @@ npx hardhat verify --network amoy <DEPLOYED_ADDRESS> 2000 0xYourFeeRecipientAddr
 - If wallet connect fails, check `NEXT_PUBLIC_WALLETCONNECT_ID`.
 - If uploads fail, verify `WEB3_STORAGE_TOKEN` and that the selected file is small enough for the free tier.
 - Ensure `NEXT_PUBLIC_MARKETPLACE_ADDRESS` matches the deployed address.
+
+## Recent changes (added by contributor)
+
+These updates were added to surface judge feedback and start implementing higher-priority features recommended by reviewers.
+
+- UI: Added a "Judge Reviews" section on the About page to display reviewer comments and recommended improvements.
+  - File: `web/src/components/JudgesReviews.tsx`
+- UI: Added a small "Roadmap & Feature Status" panel to show planned features and current status.
+  - File: `web/src/components/FeatureRoadmap.tsx`
+- Docs: App internal working notes updated with reviewer comments and an action plan (IPFS encryption, gasless flows, AI recommendations, mainnet readiness).
+  - File: `working.md`
+
+Features & next steps planned
+
+- IPFS encryption & per-buyer decryption keys (recommended first priority): protect uploaded assets by encrypting before upload and delivering per-purchase keys to buyers.
+- Gasless transactions (meta-transaction relayer) to improve UX for buyers.
+- AI-driven recommendations for product discovery (heuristic MVP, then embedding-based recommendations).
+- Mainnet readiness: contract audits, gas profiling, verified deployment scripts.
+
+If you'd like me to continue, I can implement the IPFS encryption + per-buyer key flow next and add API routes + UI for upload/download and purchase-based key delivery.
