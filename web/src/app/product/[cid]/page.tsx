@@ -5,7 +5,6 @@ import { useAccount, useReadContract, useWriteContract, useWaitForTransactionRec
 import { Button, Card, Badge } from "@/components/ui";
 import { MARKETPLACE_ADDRESS, marketplaceAbi } from "@/lib/contracts";
 import ProductCard from "@/components/ProductCard";
-import { useEffect } from "react";
 
 export default function ProductDetail() {
   const params = useParams();
