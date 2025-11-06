@@ -70,7 +70,7 @@ export default function BuyerDashboard() {
                 <div className="font-semibold">{f.cid}</div>
                 <div className="text-xs text-muted-foreground">Saved: {new Date(f.createdAt).toLocaleString()}</div>
               </div>
-              <Button as={"a" as any} href={`/product/${f.cid}`} className="bg-pink-600 text-white">Open</Button>
+              <a href={`/product/${f.cid}`} className="inline-block bg-pink-600 text-white px-3 py-1 rounded">Open</a>
             </div>
           ))
         )}
