@@ -78,6 +78,23 @@ export default function ProductDetail() {
     });
   }
 
+  async function handleFavorite() {
+    if (!cid || !address) return alert("Connect wallet to save favorites");
+    try {
+      const message = `favorite:${cid}`;
+      const signature = await (window as any).ethereum?.request({ method: "personal_sign", params: [message, address] });
+      const res = await fetch("/api/favorites", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ address, cid, signature }) });
+      if (res.ok) {
+        alert("Saved to favorites");
+      } else {
+        alert("Failed to save favorite");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Failed to save favorite");
+    }
+  }
+
   async function handleDownload() {
     if (!cid || !address) return;
     setDownloading(true);
