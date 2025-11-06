@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { Button, Card, Badge } from "@/components/ui";
 import { MARKETPLACE_ADDRESS, marketplaceAbi } from "@/lib/contracts";
+import ProductCard from "@/components/ProductCard";
+import { useEffect } from "react";
 
 export default function ProductDetail() {
   const params = useParams();
@@ -43,6 +45,23 @@ export default function ProductDetail() {
 
   const { writeContract, data: txHash, isPending } = useWriteContract();
   const { isSuccess } = useWaitForTransactionReceipt({ hash: txHash });
+
+  const [recommended, setRecommended] = useState<any[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const cat = metadata?.category || undefined;
+        if (!cat) return;
+        const res = await fetch(`/api/products?category=${encodeURIComponent(cat)}`);
+        const json = await res.json();
+        const items = (json.items || []).filter((i: any) => i.cid !== cid).slice(0, 6);
+        setRecommended(items);
+      } catch (e) {
+        // ignore
+      }
+    })();
+  }, [metadata, cid]);
 
   const seller = (productData?.data as any)?.[0] as string | undefined;
   const priceWei = (productData?.data as any)?.[1] as bigint | undefined;
@@ -123,6 +142,17 @@ export default function ProductDetail() {
               </div>
             </div>
           </Card>
+
+          {recommended.length > 0 && (
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold mb-3">You may also like</h3>
+              <div className="grid grid-cols-2 gap-4">
+                {recommended.map((p) => (
+                  <ProductCard key={p.cid} product={p} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div>
