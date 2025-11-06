@@ -1,4 +1,5 @@
 import JudgesReviews from "@/components/JudgesReviews";
+import FeatureRoadmap from "@/components/FeatureRoadmap";
 
 export default function AboutPage() {
     return (
@@ -7,6 +8,8 @@ export default function AboutPage() {
             <p className="text-muted-foreground">A decentralized marketplace for digital goods on Polygon Amoy. Sellers upload files to IPFS, list them on-chain, and buyers unlock downloads after purchase.</p>
 
             <JudgesReviews />
+
+            <FeatureRoadmap />
         </div>
     );
 }
