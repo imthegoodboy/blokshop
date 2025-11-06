@@ -115,3 +115,43 @@ Preferred communication style: Simple, everyday language.
 - **bcryptjs**: Password hashing (10 rounds)
 - **jsonwebtoken**: JWT token generation and verification
 - **viem**: Message signature verification for Web3 auth
+
+## Judge Feedback & Action Plan
+
+Judge reviews highlighted several high-impact improvements and verified the project's technical maturity. Below are the verbatim reviewer points and the prioritized action plan we will implement.
+
+### Reviewer comments
+- chillerwhale — 2025-10-27 15:39
+  - "The transition to mainnet and addition of gasless transactions and AI-driven recommendations position this as one of the most complete and technically mature submissions."
+
+- 0xNXTLVL — 2025-10-25 23:13
+  - "Digital creators need such platforms."
+
+Extra feedback (summarized):
+- "Keep working on it — it needs protection (encrypt files, and then sell unique per-buyer decryption keys) so that not just anyone can grab files for free from IPFS. Feel free to hit me up on TG for ideas: t.me/swader"
+
+### High-priority improvements (short-term)
+1. IPFS asset protection
+  - Encrypt seller files before upload (AES-256 symmetric encryption) and store encrypted content on IPFS.
+  - Implement per-purchase key delivery: after successful on-chain purchase, generate a unique symmetric key for the buyer and deliver it securely (server-signed payload + wallet signature flow).
+  - Add a server-side download route that will only return the encrypted file to authorized buyers; decryption will happen client-side after key retrieval.
+
+2. Gasless checkout (UX)
+  - Prototype meta-transactions using a relayer (OpenGSN or Biconomy). Keep the existing on-chain flows intact and provide an opt-in gasless flow.
+  - Add a relayer configuration and an operation queue (server) with signature verification and replay protection.
+
+3. AI-driven recommendations
+  - Add a server-side recommender endpoint that uses product metadata and lightweight embeddings (or third-party LLM API) to suggest related products.
+  - Start with simple heuristics (category + price + keywords), then iterate to embeddings when stable.
+
+4. Mainnet readiness checklist
+  - Audit smart contracts for access control and reentrancy.
+  - Run gas profiling and optimize where necessary.
+  - Prepare verified deployment scripts and update config for Polygon mainnet.
+
+### Long-term & follow-ups
+- Add per-file watermarks and DRM-like metadata where feasible.
+- Explore streaming/preview options for buyers to reduce piracy before purchase.
+- Consider an optional subscription model for creators.
+
+If you'd like, I can start implementing the IPFS encryption + per-buyer key flow and add the UI + docs for it as the first actionable PR. I can also wire the Judges notes into the About page so it's visible to users and contributors.
