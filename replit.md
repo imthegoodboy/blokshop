@@ -101,12 +101,7 @@ Preferred communication style: Simple, everyday language.
   - Model: gemini-1.5-flash
   - Text-only content generation
   - Pass-through proxy via API route
-
-### Database
-- **MongoDB**: Document database for metadata
-  - Connection via `mongodb` driver v6.10.0
-  - URI and database name from environment variables
-  - Connection pooling with single client instance
+ 
 
 ### Development Tools
 - **Hardhat**: Smart contract development framework
