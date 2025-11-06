@@ -36,11 +36,7 @@ Deployment output prints the `Marketplace` address. Copy it.
 ## 3) Web setup
 ```bash
 cd ../web
-# create .env with the following keys
-# NEXT_PUBLIC_WALLETCONNECT_ID=your_walletconnect_cloud_project_id
-# NEXT_PUBLIC_MARKETPLACE_ADDRESS=0xDeployedMarketplaceAddress
-# WEB3_STORAGE_TOKEN=your_web3_storage_api_token
-# GEMINI_API_KEY=your_google_generative_ai_api_key
+ 
 
 npm run dev
 ```
