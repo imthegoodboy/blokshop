@@ -37,7 +37,7 @@ export default function ProductDetail() {
     address: MARKETPLACE_ADDRESS as `0x${string}`,
     abi: marketplaceAbi as any,
     functionName: "hasBuyerAccess",
-    args: [address, cid],
+    args: [address as `0x${string}`, cid],
     query: { enabled: !!address && !!cid }
   });
 
